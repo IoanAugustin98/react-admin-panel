@@ -55,9 +55,9 @@ Bineînțeles, mai am multe de învățat.
 
 Hai să trecem în revistă ce știe proiectul nostru să facă:
 
-**- Preluare useri din API **- userii noștri sunt aduși în urma unui request asincron către JSON Placeholder
-**- Listare useri existenți **- userii pe care i-am preluat din API sunt afișați pe ecran
-**- Adăugare user nou **- completând câmpurile din formular, la submitere userul nou introdus este listat pe ecran
-**- Schimbare culoare fundal **- dând click pe butonul din subsolul paginii, putem schimba culoarea de fundal a paginii
+- Preluare useri din API - userii noștri sunt aduși în urma unui request asincron către JSON Placeholder
+- Listare useri existenți - userii pe care i-am preluat din API sunt afișați pe ecran
+- Adăugare user nou - completând câmpurile din formular, la submitere userul nou introdus este listat pe ecran
+- Schimbare culoare fundal - dând click pe butonul din subsolul paginii, putem schimba culoarea de fundal a paginii
 
 Poate nu par multe funcționalități, dar noi știu că am muncit la ele!
