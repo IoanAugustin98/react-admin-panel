@@ -39,7 +39,7 @@ e asincron. Grijă când actualizăm un câmp al state-ului parțial!
 
 ## Funcționalități
 
-Știți vorba aia: "Practica ne omoară". Am învățat noi concepte teoretice, dar dacă nu le-am fi practicat în cadrul unui proiect, ar fi fost degeaba. Hai să trecem în revistă ce știe proiectul nostru să facă:
+Hai să trecem în revistă ce știe proiectul nostru să facă:
 
 #### Preluare useri din API
 userii noștri sunt aduși în urma unui request asincron către JSON Placeholder
