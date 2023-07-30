@@ -47,6 +47,8 @@ Vrei să actualizezi state-ul unei componente dintr-o altă componentă? Sună c
 #### setState
 E asincron. Grijă când actualizăm un câmp al state-ului parțial!
 
+|              |                |             |
+| ------------ | -------------- | ----------- |
 
 Evident, am mai învățat și alte mici lucruri pe lângă, dar ăsta e un mic rezumat. 
 Bineînțeles, mai am multe de învățat. 
@@ -67,4 +69,4 @@ Hai să trecem în revistă ce știe proiectul nostru să facă:
 - Faceți puțină validare a datelor. Spre exemplu, să nu poată fi introdus un nume gol, iar emailul să conțină caracterele '@' și '.' .
 - Stilizați aplicația, astfel încât să arate mai frumos.
 
-Poate nu par multe funcționalități, dar noi știu că am muncit la ele!
+Poate nu par multe funcționalități, dar știu că am muncit la ele!
