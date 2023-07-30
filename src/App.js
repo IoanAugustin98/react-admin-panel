@@ -2,13 +2,17 @@ import React from 'react';
 import UserList from './components/UserList';
 import UserAddForm from './components/UserAddForm';
 import './App.css';
+import PostList from './components/PostList';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
       background: 'white',
-      users: []
+      color: 'black',
+      users: [],
+      posts: [],
+      curentPrint: 'utilizatori'
     };
   }
 
@@ -17,15 +21,37 @@ class App extends React.Component {
       .then(response => response.json())
       .then(data => {
         data = data.filter(user => user.id < 4);
+        let salariu = 1000;
         data.forEach(user => {
           user.isGoldClient = false;
+          user.salariu      = salariu;
+          user.avatar      = 'img_avatar.png';
+          salariu += 500;
         });
         this.setState({users: data});
-      })
+      });
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(response => response.json())
+      .then(data => {
+        data = data.filter(post => post.id < 4);
+        this.setState({posts: data});
+      });
+  }
+
+  changeBackgroundColor(event) {
+    this.setState({background: event.target.value});
   }
 
   changeColor(event) {
-    this.setState({background: event.target.value});
+    this.setState({color: event.target.value});
+  }
+
+  afiseazaUtilizatori(event) {
+    this.setState({curentPrint: 'utilizatori'});
+  }
+
+  afiseazaPostari(event) {
+    this.setState({curentPrint: 'postari'});
   }
 
   getMaxId(users) {
@@ -40,8 +66,23 @@ class App extends React.Component {
     return maxId;
   }
 
-  submitAddForm(event, name, email, isGoldClient) {
+  validateEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  }
+  
+  submitAddForm(event, name, email, isGoldClient, salariu) {
     event.preventDefault();
+    if(
+      name    === '' ||
+      ( 
+        email   === '' && 
+        this.validateEmail(email) 
+      ) || 
+      salariu === ''
+    ) { 
+      return null; 
+    }
     this.setState(prevState => {
       return {
         users: [
@@ -50,7 +91,8 @@ class App extends React.Component {
             id: this.getMaxId(prevState.users) + 1,
             name,
             email,
-            isGoldClient
+            isGoldClient,
+            salariu
           }
         ]
       }
@@ -59,11 +101,34 @@ class App extends React.Component {
 
   render() {
     return(
-      <div className="app" style={{background: this.state.background}}>
-        <h1>Admin panel - Proiectul 1</h1>
-        <UserAddForm submitAddForm={(event, name, email, isGoldClient) => this.submitAddForm(event, name, email, isGoldClient)}/>
-        <UserList users={this.state.users}/>
-        <input type="color" onChange={(event) => this.changeColor(event)}/>
+      <div className="app" style={{background: this.state.background, color:this.state.color}}>
+
+        <div className="titlu">
+          <h1>Admin panel - Proiectul 1</h1>
+        </div>
+
+        <div className="continut">
+          <UserAddForm submitAddForm={(event, name, email, isGoldClient, salariu) => this.submitAddForm(event, name, email, isGoldClient, salariu)}/>
+          { 
+            this.state.curentPrint === 'utilizatori'
+                ? <UserList users={this.state.users}/>
+                : null
+          }
+          { 
+            this.state.curentPrint === 'postari'
+                ? <PostList posts={this.state.posts}/>
+                : null
+          }
+        </div>
+
+        <button onClick={(event) => this.afiseazaUtilizatori(event)}>Afiseaza utilizatorii</button>
+        <button onClick={(event) => this.afiseazaPostari(event)}>Afiseaza postarile</button>
+        <br/>
+        <label htmlFor="background">Schimba background: </label>
+        <input type="color" onChange={(event) => this.changeBackgroundColor(event)}  name="background" />
+        <br/>
+        <label htmlFor="culoare-text">Schimba culoarea textului: </label>
+        <input type="color" onChange={(event) => this.changeColor(event)} name="culoare-text"/>
       </div>
     );
   }
