@@ -2,7 +2,9 @@ import React from 'react'
 
 function Page404() {
   return (
-    <div>Page404</div>
+    <div>
+        <h1>Incorect page</h1>
+    </div>
   )
 }
 
